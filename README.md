@@ -33,6 +33,9 @@ https://youtu.be/3dW6_CYSGR4
 
 
 # Workflow steps
+
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/steps.png) 
+
 1. Device initiate a suspicious behavior
 2. SWC triggers an alert on this communication and sends a notification to the admin
 3. Action Orchestrator (AO) parsing constantly email events. 
@@ -40,8 +43,9 @@ https://youtu.be/3dW6_CYSGR4
 5. Parsing of endpoint IP from email
 6. Find AMP GUID that is the source of the malicious behavior
 7. Isolate host with AMP GUID
+8. Send a message to a webex teams room notifying about the endpoint isolation
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/steps.png) 
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/webex_teams.png) 
 
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/workflow.png) 
 
