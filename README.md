@@ -1,6 +1,7 @@
 # swc_amp_securex_orchestration
 Workflow of SecureX Action Orchestrator module.
-
+ 
+ 
 
 # Motivation
 The goal of this workflow is to trigger an automated response when we receive an email with an alarm triggered in Stealthwatch Cloud. Leveraging AMP for endpoints API, we will isolate the host and hence, protect our network.
@@ -11,6 +12,7 @@ We need to isolate the host from the network to reduce the threat ability to spr
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/orchestration.png) 
 
 
+
 # Scenario
 - Remote or local worker connected to the network.
 - The end device has AnyConnect and AMP for endpoint installed for endpoint security and connectivity
@@ -19,6 +21,7 @@ We need to isolate the host from the network to reduce the threat ability to spr
 - Stealthwatch is integrated with CTR, SecureX and AO
 
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/scenario.png) 
+
 
 
 # Workflow steps
