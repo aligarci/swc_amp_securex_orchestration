@@ -66,7 +66,7 @@ Configure Stealthwatch Cloud to send you an email every time an alert is trigger
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/swc1.png) 
 
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/swc1.png) 
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/swc2.png) 
 
 
 
@@ -102,9 +102,9 @@ Configure Stealthwatch Cloud to send you an email every time an alert is trigger
    - Also add the room id of your webex room, where you want to post the message (You can obtain your room id going to https://developer.webex.com/docs/api/v1/rooms/get-room-details and pasting the name of your room)
    
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/webex_teams_id.png) 
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/id.png) 
 
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/webex_teams_id2.png)
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/id2.png)
 
 
