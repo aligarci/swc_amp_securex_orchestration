@@ -2,9 +2,9 @@
 Workflow of SecureX Action Orchestrator module.
  
 # Authors:
-Hanna Jabbour
-Alicia Garcia Sastre
-Remi Vacher
+- Hanna Jabbour
+- Alicia Garcia Sastre
+- Remi Vacher
  
 
 # Motivation
