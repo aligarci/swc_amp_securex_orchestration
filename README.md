@@ -1,6 +1,10 @@
 # swc_amp_securex_orchestration
 Workflow of SecureX Action Orchestrator module.
  
+# Authors:
+Hanna Jabbour
+Alicia Garcia Sastre
+Remi Vacher
  
 
 # Motivation
