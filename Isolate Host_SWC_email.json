@@ -1,8 +1,8 @@
 {
   "workflow": {
     "unique_name": "definition_workflow_01GQLW43M6VCA6mxXxYIrfNth0ogFVGxY3g",
-    "name": "Automated Remediation SWC-AMP4E",
-    "title": "Automated Remediation SWC-AMP4E",
+    "name": "Automatic isolation though AMP4E triggered by SWC alarm",
+    "title": "Automatic isolation though AMP4E triggered by SWC alarm",
     "type": "generic.workflow",
     "base_type": "workflow",
     "variables": null,
@@ -11,8 +11,9 @@
         "is_atomic": false
       },
       "delete_workflow_instance": false,
-      "description": "Enables isolation for a given computer by its connector GUID.\n\n[] Get the computer's current isolation status\n[] Check whether or not isolation is available for this computer\n[]> If not, end the workflow as there's nothing more we can do\n[] Request AMP update the computer's isolation status\n[] Check if the request failed and, if so, return an error",
-      "display_name": "Automated Remediation SWC-AMP4E",
+      "description": "1 Device initiate a suspicious behavior\n2 SWC triggers an alert on this communication and sends a notification to the admin\n3 Action Orchestrator (AO) parsing constantly email events.\n4 When the alarm email is received, it will trigger the response workflow\n5Parsing of endpoint IP from email\n6 Find AMP GUID that is the source of the malicious behavior\n7  Get the computer's current isolation status\n8 Check whether or not isolation is available for this computer> If not, end the workflow as there's nothing more we can do\n9 Request AMP update the computer's isolation status and isolate the endpoint with its AMP GUID\n10 Check if the request failed and, if so, return an error\n11 Send a message to webex teams if the isolation was successful \n\n
+      s:\n- Hanna Jabbour\n- Alicia Garcia Sastre\n- Remi Vacher",
+      "display_name": "Automatic isolation though AMP4E triggered by SWC alarm",
       "runtime_user": {
         "runtime_user_id": "definition_runtime_user_01GQHQZ6QO5C47ZEric3sO0Og4ek4KETvq9",
         "override_target_runtime_user": true,
@@ -29,22 +30,21 @@
       {
         "unique_name": "definition_activity_01GQLYJ4EI4UJ0COig8pqp7yMesyWg0ZoJ3",
         "name": "Wait For Event",
-        "title": "Stealthwatch Cloud Email",
+        "title": "Stealthwatch Cloud email",
         "type": "task.wait_for_event",
         "base_type": "activity",
         "properties": {
           "continue_on_failure": false,
-          "display_name": "Stealthwatch Cloud Email",
+          "display_name": "Stealthwatch Cloud email",
           "event_info": {
             "add_event": true,
             "event_definition": {
-              "action": "delete",
+              "action": "read",
               "conditions": {
                 "left_operand": "$output.sender$",
                 "operator": "eq",
                 "right_operand": "service@obsrvbl.com"
               },
-              "download_attachments": true,
               "folder": "INBOX",
               "target_id": "definition_target_01GMBCSIX93D907IIbHhoY7BTGFLp0gBZH3"
             }
@@ -301,20 +301,18 @@
         ]
       },
       {
-        "unique_name": "definition_activity_01GQOG3SJVSD20ubgYrJpPFdXAYpuC7wmCE",
-        "name": "Webex Teams - Send Message to User",
-        "title": "Webex Teams - Send Message to User",
+        "unique_name": "definition_activity_01GSGC5I7CMS02KChP5eBOLyv8aDQPFXJmo",
+        "name": "Webex Teams - Post a Message about isolation",
+        "title": "Webex Teams - Post a Message about isolation",
         "type": "workflow.atomic_workflow",
         "base_type": "subworkflow",
         "properties": {
           "continue_on_failure": false,
-          "display_name": "Webex Teams - Send Message to User",
+          "display_name": "Webex Teams - Post a Message about isolation",
           "input": {
-            "variable_workflow_01FHS2UP7FNRI3hQkE9KFPLzxq1MuyZ7i4C": "$global.variable_01GQNJKFXHIQG75b31WfT5ZZV5KDBxT11bv.global.variable_01GQNJKFXHIQG75b31WfT5ZZV5KDBxT11bv$",
-            "variable_workflow_01FHS2UP7FU767Yf512VoXF8Vx7cfmiRwBX": "rvacher@cisco.com",
-            "variable_workflow_01FHS2UP7FVZC424MqvtAy88gIvi4VfEK6z": "",
-            "variable_workflow_01FHS2UP7FX4H1ncjCzr9yKoe4mkm3DnEfx": "Hello, this is to let you know that host $activity.definition_activity_01GQMX09YCH385Rgm2tWjYDNSV9PQARg3FH.output.variable_workflow_01GQHY7DG8CKK6nFw9n3fFG1vGk3RpphiZd$ has been quarantined",
-            "variable_workflow_01FNN77D7KAVX4MlMaoUnGcsoENvbUDm52H": ""
+            "variable_workflow_01F9A4GEFNWCM6DIS0MqnPk9FrfTNKmCYys": "$global.variable_01GSE0GGBJ8KS78dUoPBQTekUsdhWNcXDY4.global.variable_01GSE0GGBJ8KS78dUoPBQTekUsdhWNcXDY4$",
+            "variable_workflow_01F9A4GEFO3OR3YrxIMloq3gVh8qh3xDa7N": "Y2lzY29zcGFyazovL3VzL1JPT00vYjMxNzQwOTAtYjYxNy0xMWVhLWE4OGEtNzNjZGZhMTRhZDMx",
+            "variable_workflow_01F9A4GEFO4Z24amhtYkXVQ9w8zzXndyXAP": "Enpoint with IP $activity.definition_activity_01GQMW7IOTFWV0yBN2fqwIE0Fil76smrWWD.output.matching_strings[0]$  and GUI $activity.definition_activity_01GQMX09YCH385Rgm2tWjYDNSV9PQARg3FH.output.variable_workflow_01GQHY7DG8CKK6nFw9n3fFG1vGk3RpphiZd$ has been isolated"
           },
           "runtime_user": {
             "target_default": true
@@ -322,10 +320,10 @@
           "skip_execution": false,
           "target": {
             "override_workflow_target": true,
-            "target_id": "definition_target_01GO8JVZSRPK01axNzct8GA8WoPQg01CkjE",
-            "target_type": "01GO8GKPTFD5G6eNqVSbCwlEdpIdRs76iZn"
+            "target_id": "01EBBH5VEL3BW52QyyV9XtpzwZrqwV0tWjp",
+            "target_type": "01DP17RZO1NPY2nU90yoRhgJck3MEdxTGM2"
           },
-          "workflow_id": "definition_workflow_01FHS2UPUQNCZ0PCqtR2BcNyTpy7oPfnIV4"
+          "workflow_id": "definition_workflow_01F9A4GF8ESOT7SkYymvW8FyEOzp5VC6Yaj"
         },
         "object_type": "definition_activity"
       }
@@ -351,23 +349,6 @@
         "protocol": "IMAP",
         "server": "imap.gmail.com",
         "tls_enabled": true
-      }
-    },
-    "definition_target_01GO8JVZSRPK01axNzct8GA8WoPQg01CkjE": {
-      "unique_name": "definition_target_01GO8JVZSRPK01axNzct8GA8WoPQg01CkjE",
-      "name": "Webex Teams",
-      "title": "Webex Teams",
-      "type": "web-service.endpoint",
-      "base_type": "target",
-      "object_type": "definition_target",
-      "properties": {
-        "description": "Webex Teams",
-        "disable_certificate_validation": false,
-        "display_name": "Webex Teams",
-        "host": "webexapis.com",
-        "no_runtime_user": true,
-        "port": 443,
-        "protocol": "https"
       }
     },
     "definition_target_01GQHV1P37MPB5y0FaQ7hL8MGxEeSpGVWfX": {
@@ -417,12 +398,12 @@
     }
   },
   "variables": {
-    "variable_01GQNJKFXHIQG75b31WfT5ZZV5KDBxT11bv": {
-      "unique_name": "variable_01GQNJKFXHIQG75b31WfT5ZZV5KDBxT11bv",
+    "variable_01GSE0GGBJ8KS78dUoPBQTekUsdhWNcXDY4": {
+      "unique_name": "variable_01GSE0GGBJ8KS78dUoPBQTekUsdhWNcXDY4",
       "properties": {
         "value": "*****",
         "scope": "global",
-        "name": "Webex Team ",
+        "name": "aligarci_webextoken",
         "type": "datatype.secure_string",
         "is_required": false
       },
@@ -581,6 +562,6 @@
     }
   ],
   "atomic_workflows": [
-    "definition_workflow_01FHS2UPUQNCZ0PCqtR2BcNyTpy7oPfnIV4"
+    "definition_workflow_01F9A4GF8ESOT7SkYymvW8FyEOzp5VC6Yaj"
   ]
 }
