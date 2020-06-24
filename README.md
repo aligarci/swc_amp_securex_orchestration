@@ -17,6 +17,7 @@ We need to isolate the host from the network to reduce the threat ability to spr
 
 https://youtu.be/3dW6_CYSGR4
 
+
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/orchestration.png) 
 
 
@@ -28,13 +29,16 @@ https://youtu.be/3dW6_CYSGR4
 - Stealthwatch is monitoring the network end to end
 - Stealthwatch is integrated with CTR, SecureX and AO
 
+
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/scenario.png) 
 
 
 
 # Workflow steps
 
+
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/steps.png) 
+
 
 1. Device initiate a suspicious behavior
 2. SWC triggers an alert on this communication and sends a notification to the admin
@@ -45,13 +49,29 @@ https://youtu.be/3dW6_CYSGR4
 7. Isolate host with AMP GUID
 8. Send a message to a webex teams room notifying about the endpoint isolation
 
+
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/webex_teams.png) 
+
 
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/workflow.png) 
 
 
 
 # How to use it
+
+## Stealthwatch cloud configuration
+Configure Stealthwatch Cloud to send you an email every time an alert is triggered:
+
+
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/swc1.png) 
+
+
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/swc1.png) 
+
+
+
+
+## Action Orchestration configuration
 - Log into Action Orchestration 
 - Click on workflow tab
 - Click on import
@@ -60,13 +80,31 @@ https://youtu.be/3dW6_CYSGR4
 - Check "import as a new workflow (clone)
 - Click on import
 - Now the workflow is imported. You can click on it and will be able to modify it:
+
+
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/workflow2.png) 
+
 
 - On the right pannel, you will be able to add the target and account keys of your AMP4E endpoints.
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/amp.png) 
 
+
 - Click now on "Stealthwatch Cloud email", and modify the target id to match your email credentials
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/email.png) 
 
+- Click on "Webex Teams Post a Message about isolation" and include:
+
+
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/webex_teams_config.png) 
+
+
+   - The access token of your Webex Teams bot (You can create one and obtain the acces token here: https://developer.webex.com/)
+   - Also add the room id of your webex room, where you want to post the message (You can obtain your room id going to https://developer.webex.com/docs/api/v1/rooms/get-room-details and pasting the name of your room)
+   
+
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/webex_teams_id.png) 
+
+
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/webex_teams_id2.png)
 
 
