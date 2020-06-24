@@ -1,4 +1,4 @@
-![License: CISCO](https://img.shields.io/badge/License-CISCO-blue.svg)
+![License: CISCO](https://img.shields.io/badge/License-CISCO-blue.svg) [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/aligarci/swc_amp_securex_orchestration)
 
 # swc_amp_securex_orchestration
 Workflow of SecureX Action Orchestrator module.
