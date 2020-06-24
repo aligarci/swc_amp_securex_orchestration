@@ -13,6 +13,8 @@ The goal of this workflow is to trigger an automated response when we receive an
 Having a SOC analyst reviewing the event and then taking a decision about the required mitigation is not fast enough. 
 We need to isolate the host from the network to reduce the threat ability to spread. 
 
+https://youtu.be/3dW6_CYSGR4
+
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/orchestration.png) 
 
 
