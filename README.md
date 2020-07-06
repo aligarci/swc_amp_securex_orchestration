@@ -31,7 +31,7 @@ https://youtu.be/3dW6_CYSGR4
 - Stealthwatch is integrated with CTR, SecureX and AO
 
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/scenario.png) 
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/scenario2.png) 
 
 
 
