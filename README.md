@@ -2,7 +2,7 @@
 
 # swc_amp_securex_orchestration
 Workflow of SecureX Action Orchestrator module.
-Disclaimer: This code requires to be implemented in SecureX, which will be avilable to the public on the June 30th.
+ 
  
 # Authors:
 - Hanna Jabbour
