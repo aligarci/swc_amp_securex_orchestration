@@ -1,8 +1,8 @@
 {
   "workflow": {
-    "unique_name": "definition_workflow_01GQLW43M6VCA6mxXxYIrfNth0ogFVGxY3g",
-    "name": "Automatic isolation though AMP4E triggered by SWC alarm",
-    "title": "Automatic isolation though AMP4E triggered by SWC alarm",
+    "unique_name": "definition_workflow_01H8NSZUGGG4131tKw5nGoAQ8fmHYy8g3iq",
+    "name": "Automatic isolation though AMP4E triggered by SWC alarm v3",
+    "title": "Automatic isolation though AMP4E triggered by SWC alarm v3",
     "type": "generic.workflow",
     "base_type": "workflow",
     "variables": null,
@@ -11,9 +11,8 @@
         "is_atomic": false
       },
       "delete_workflow_instance": false,
-      "description": "1 Device initiate a suspicious behavior\n2 SWC triggers an alert on this communication and sends a notification to the admin\n3 Action Orchestrator (AO) parsing constantly email events.\n4 When the alarm email is received, it will trigger the response workflow\n5Parsing of endpoint IP from email\n6 Find AMP GUID that is the source of the malicious behavior\n7  Get the computer's current isolation status\n8 Check whether or not isolation is available for this computer> If not, end the workflow as there's nothing more we can do\n9 Request AMP update the computer's isolation status and isolate the endpoint with its AMP GUID\n10 Check if the request failed and, if so, return an error\n11 Send a message to webex teams if the isolation was successful \n\n
-      s:\n- Hanna Jabbour\n- Alicia Garcia Sastre\n- Remi Vacher",
-      "display_name": "Automatic isolation though AMP4E triggered by SWC alarm",
+      "description": "1 Device initiate a suspicious behavior\n2 SWC triggers an alert on this communication and sends a notification to the admin\n3 Action Orchestrator (AO) parsing constantly email events.\n4 When the alarm email is received, it will trigger the response workflow\n5Parsing of endpoint IP from email\n6 Find AMP GUID that is the source of the malicious behavior\n7  Get the computer's current isolation status\n8 Check whether or not isolation is available for this computer> If not, end the workflow as there's nothing more we can do\n9 Request AMP update the computer's isolation status and isolate the endpoint with its AMP GUID\n10 Check if the request failed and, if so, return an error\n11 Send a message to webex teams if the isolation was successful \n\nAuthors:\n- Hanna Jabbour\n- Alicia Garcia Sastre\n- Remi Vacher",
+      "display_name": "Automatic isolation though AMP4E triggered by SWC alarm v3",
       "runtime_user": {
         "runtime_user_id": "definition_runtime_user_01GQHQZ6QO5C47ZEric3sO0Og4ek4KETvq9",
         "override_target_runtime_user": true,
@@ -28,7 +27,7 @@
     "object_type": "definition_workflow",
     "actions": [
       {
-        "unique_name": "definition_activity_01GQLYJ4EI4UJ0COig8pqp7yMesyWg0ZoJ3",
+        "unique_name": "definition_activity_01H8NT37YE1IU5lcCifP7GiE2C8sWzTNNEv",
         "name": "Wait For Event",
         "title": "Stealthwatch Cloud email",
         "type": "task.wait_for_event",
@@ -55,7 +54,7 @@
         "object_type": "definition_activity"
       },
       {
-        "unique_name": "definition_activity_01GQMW7IOTFWV0yBN2fqwIE0Fil76smrWWD",
+        "unique_name": "definition_activity_01H8NT3FHO2CA5tB4NZ0EZGRfqPKG73dd9o",
         "name": "Match Regular Expression",
         "title": "Match internal IP",
         "type": "core.matchregex",
@@ -64,13 +63,13 @@
           "continue_on_failure": false,
           "display_name": "Match internal IP",
           "input_regex": "\\d+\\.\\d+\\.\\d+\\.\\d+",
-          "input_string": "$activity.definition_activity_01GQLYJ4EI4UJ0COig8pqp7yMesyWg0ZoJ3.output.message$",
+          "input_string": "$activity.definition_activity_01H8NT37YE1IU5lcCifP7GiE2C8sWzTNNEv.output.message$",
           "skip_execution": false
         },
         "object_type": "definition_activity"
       },
       {
-        "unique_name": "definition_activity_01GQMX09YCH385Rgm2tWjYDNSV9PQARg3FH",
+        "unique_name": "definition_activity_01H8NT3PA1HMD31ouiW3ddcQ0aQBtuOqv1g",
         "name": "HJ_AMP_Get_Guid for IP",
         "title": "HJ_AMP_Get_Guid for IP",
         "type": "workflow.sub_workflow",
@@ -79,7 +78,7 @@
           "continue_on_failure": false,
           "display_name": "HJ_AMP_Get_Guid for IP",
           "input": {
-            "variable_workflow_01GQHY7DG88MX1P8gGz4NAYMYw7RmY82OFP": "$activity.definition_activity_01GQMW7IOTFWV0yBN2fqwIE0Fil76smrWWD.output.matching_strings[0]$"
+            "variable_workflow_01H8NT15ID1O47VxPSnsUfJgJvJmI3P1tMq": "$activity.definition_activity_01H8NT3FHO2CA5tB4NZ0EZGRfqPKG73dd9o.output.matching_strings[0]$"
           },
           "runtime_user": {
             "target_default": true
@@ -90,12 +89,12 @@
             "target_id": "definition_target_01GQHV1P37MPB5y0FaQ7hL8MGxEeSpGVWfX",
             "target_type": "web-service.endpoint"
           },
-          "workflow_id": "definition_workflow_01GQHY7FLLNN2329kLIh1fFilgc65Hkb2I1"
+          "workflow_id": "definition_workflow_01H8NT15UAKOJ5HJ1zg2mm2T2p6lhpCr0xT"
         },
         "object_type": "definition_activity"
       },
       {
-        "unique_name": "definition_activity_01GQLW5VQCUKV0RH0gjDvmuXFWI7dgPmCpe",
+        "unique_name": "definition_activity_01H8NT3Z7EVRJ4a5pGR7F6unF15HJR9b6Vr",
         "name": "HTTP Request",
         "title": "Get the computer's isolation status",
         "type": "web-service.http_request",
@@ -108,7 +107,7 @@
           "continue_on_failure": false,
           "display_name": "Get the computer's isolation status",
           "method": "GET",
-          "relative_url": "/v1/computers/$activity.definition_activity_01GQMX09YCH385Rgm2tWjYDNSV9PQARg3FH.output.variable_workflow_01GQHY7DG8CKK6nFw9n3fFG1vGk3RpphiZd$/isolation",
+          "relative_url": "/v1/computers/$activity.definition_activity_01H8NT3PA1HMD31ouiW3ddcQ0aQBtuOqv1g.output.variable_workflow_01H8NT15ID6NY3XF5cdeMsBmKxN29WzGqCo$/isolation",
           "runtime_user": {
             "override_target_runtime_user": false,
             "target_default": true
@@ -124,7 +123,7 @@
         "object_type": "definition_activity"
       },
       {
-        "unique_name": "definition_activity_01GQLW6IS8UW76wtnUfHVS8zmogHdoHtRe1",
+        "unique_name": "definition_activity_01H8NT47CS9N532WoIElgb6jQCg1ZcHmNCd",
         "name": "JSONPath Query",
         "title": "Extract results",
         "type": "corejava.jsonpathquery",
@@ -133,7 +132,7 @@
           "action_timeout": 180,
           "continue_on_failure": false,
           "display_name": "Extract results",
-          "input_json": "$activity.definition_activity_01GQLW5VQCUKV0RH0gjDvmuXFWI7dgPmCpe.output.response_body$",
+          "input_json": "$activity.definition_activity_01H8NT3Z7EVRJ4a5pGR7F6unF15HJR9b6Vr.output.response_body$",
           "jsonpath_queries": [
             {
               "jsonpath_query": "$.data.available",
@@ -151,7 +150,7 @@
         "object_type": "definition_activity"
       },
       {
-        "unique_name": "definition_activity_01GQLW7DE073B4V0CkQEUXLDGbflVVh14De",
+        "unique_name": "definition_activity_01H8NT4EX1ILA2R0ZkM8nfHI94kkkLOBd9t",
         "name": "Condition Block",
         "title": "Is isolation available for this computer?",
         "type": "logic.if_else",
@@ -164,14 +163,14 @@
         "object_type": "definition_activity",
         "blocks": [
           {
-            "unique_name": "definition_activity_01GQLW7TXK4G90MWRBewq3rZKp9ws4TDW3U",
+            "unique_name": "definition_activity_01H8NT4LWWGSW09I9sTRLcM7RycCIfx04KH",
             "name": "Condition Branch",
             "title": "No",
             "type": "logic.condition_block",
             "base_type": "activity",
             "properties": {
               "condition": {
-                "left_operand": "$activity.definition_activity_01GQLW6IS8UW76wtnUfHVS8zmogHdoHtRe1.output.jsonpath_queries.available$",
+                "left_operand": "$activity.definition_activity_01H8NT47CS9N532WoIElgb6jQCg1ZcHmNCd.output.jsonpath_queries.available$",
                 "operator": "eq",
                 "right_operand": false
               },
@@ -182,7 +181,7 @@
             "object_type": "definition_activity",
             "actions": [
               {
-                "unique_name": "definition_activity_01GQLW8L1QNXS2FCPTdS14maWVbREmhvcLA",
+                "unique_name": "definition_activity_01H8NT4R7ZWS30V7CGe9BkH6vfAKfWh9sEM",
                 "name": "Completed",
                 "title": "Isolation not available",
                 "type": "logic.completed",
@@ -201,7 +200,7 @@
         ]
       },
       {
-        "unique_name": "definition_activity_01GQLW95RXAX27mTydXy7gZXu1nqUJfvSAw",
+        "unique_name": "definition_activity_01H8NT4YHV7IY58Bg80L7XmETBysspseS1o",
         "name": "HTTP Request",
         "title": "Update the computer's isolation status",
         "type": "web-service.http_request",
@@ -227,7 +226,7 @@
           ],
           "display_name": "Update the computer's isolation status",
           "method": "PUT",
-          "relative_url": "/v1/computers/$activity.definition_activity_01GQMX09YCH385Rgm2tWjYDNSV9PQARg3FH.output.variable_workflow_01GQHY7DG8CKK6nFw9n3fFG1vGk3RpphiZd$/isolation",
+          "relative_url": "/v1/computers/$activity.definition_activity_01H8NT3PA1HMD31ouiW3ddcQ0aQBtuOqv1g.output.variable_workflow_01H8NT15ID6NY3XF5cdeMsBmKxN29WzGqCo$/isolation",
           "runtime_user": {
             "override_target_runtime_user": false,
             "target_default": true
@@ -243,7 +242,7 @@
         "object_type": "definition_activity"
       },
       {
-        "unique_name": "definition_activity_01GQLW9WBNAGE0CYAgr2gvaOPirUhis2If5",
+        "unique_name": "definition_activity_01H8NT5720FFY5F3f3cdKeJSQOKzl8JwFDN",
         "name": "Condition Block",
         "title": "Did the request succeed?",
         "type": "logic.if_else",
@@ -256,7 +255,7 @@
         "object_type": "definition_activity",
         "blocks": [
           {
-            "unique_name": "definition_activity_01GQLWAGOCMWU4c1HN2zuB1KlXgBBTbgNeT",
+            "unique_name": "definition_activity_01H8NT5ER0VGQ16lYqlnbPl8WucrSxbTyjY",
             "name": "Condition Branch",
             "title": "No",
             "type": "logic.condition_block",
@@ -264,13 +263,13 @@
             "properties": {
               "condition": {
                 "left_operand": {
-                  "left_operand": "$activity.definition_activity_01GQLW95RXAX27mTydXy7gZXu1nqUJfvSAw.output.status_code$",
+                  "left_operand": "$activity.definition_activity_01H8NT4YHV7IY58Bg80L7XmETBysspseS1o.output.status_code$",
                   "operator": "ne",
                   "right_operand": 200
                 },
                 "operator": "and",
                 "right_operand": {
-                  "left_operand": "$activity.definition_activity_01GQLW95RXAX27mTydXy7gZXu1nqUJfvSAw.output.status_code$",
+                  "left_operand": "$activity.definition_activity_01H8NT4YHV7IY58Bg80L7XmETBysspseS1o.output.status_code$",
                   "operator": "ne",
                   "right_operand": 409
                 }
@@ -282,7 +281,7 @@
             "object_type": "definition_activity",
             "actions": [
               {
-                "unique_name": "definition_activity_01GQLWB7TJQAC5FLeb6R1YOwXCkkouCrN04",
+                "unique_name": "definition_activity_01H8NT5KCE2Z52IEDMXpWIdWC46js3YRZ6J",
                 "name": "Completed",
                 "title": "Request failed",
                 "type": "logic.completed",
@@ -291,7 +290,7 @@
                   "completion_type": "failed-completed",
                   "continue_on_failure": false,
                   "display_name": "Request failed",
-                  "result_message": "Updating the computer's isolation status failed\n\nResponse body: $activity.definition_activity_01GQLW95RXAX27mTydXy7gZXu1nqUJfvSAw.output.response_body$\nStatus code: $activity.definition_activity_01GQLW95RXAX27mTydXy7gZXu1nqUJfvSAw.output.status_code$",
+                  "result_message": "Updating the computer's isolation status failed\n\nResponse body: $activity.definition_activity_01H8NT4YHV7IY58Bg80L7XmETBysspseS1o.output.response_body$\nStatus code: $activity.definition_activity_01H8NT4YHV7IY58Bg80L7XmETBysspseS1o.output.status_code$",
                   "skip_execution": false
                 },
                 "object_type": "definition_activity"
@@ -301,18 +300,19 @@
         ]
       },
       {
-        "unique_name": "definition_activity_01GSGC5I7CMS02KChP5eBOLyv8aDQPFXJmo",
-        "name": "Webex Teams - Post a Message about isolation",
-        "title": "Webex Teams - Post a Message about isolation",
+        "unique_name": "definition_activity_01H8NYEDS39872it2qlC7ecKTFQ7iVmlmUk",
+        "name": "Webex Teams - Post Message to Room",
+        "title": "Webex Teams - Post Message to Room",
         "type": "workflow.atomic_workflow",
         "base_type": "subworkflow",
         "properties": {
           "continue_on_failure": false,
-          "display_name": "Webex Teams - Post a Message about isolation",
+          "display_name": "Webex Teams - Post Message to Room",
           "input": {
-            "variable_workflow_01F9A4GEFNWCM6DIS0MqnPk9FrfTNKmCYys": "$global.variable_01GSE0GGBJ8KS78dUoPBQTekUsdhWNcXDY4.global.variable_01GSE0GGBJ8KS78dUoPBQTekUsdhWNcXDY4$",
-            "variable_workflow_01F9A4GEFO3OR3YrxIMloq3gVh8qh3xDa7N": "Y2lzY29zcGFyazovL3VzL1JPT00vYjMxNzQwOTAtYjYxNy0xMWVhLWE4OGEtNzNjZGZhMTRhZDMx",
-            "variable_workflow_01F9A4GEFO4Z24amhtYkXVQ9w8zzXndyXAP": "Enpoint with IP $activity.definition_activity_01GQMW7IOTFWV0yBN2fqwIE0Fil76smrWWD.output.matching_strings[0]$  and GUI $activity.definition_activity_01GQMX09YCH385Rgm2tWjYDNSV9PQARg3FH.output.variable_workflow_01GQHY7DG8CKK6nFw9n3fFG1vGk3RpphiZd$ has been isolated"
+            "variable_workflow_01FGYY44G3MZ55amJu9YqgUeKS8GT49bZx3": "$global.variable_01H8O34O0PAJ47blMMxbt2SNGMp4PTPYlnD.global.variable_01H8O34O0PAJ47blMMxbt2SNGMp4PTPYlnD$",
+            "variable_workflow_01FGYY44G3TK951Crpnd8g2izonyM4bFtpW": "Y2lzY29zcGFyazovL3VzL1JPT00vYjMxNzQwOTAtYjYxNy0xMWVhLWE4OGEtNzNjZGZhMTRhZDMx",
+            "variable_workflow_01FGYY44G3UPV3heGGc3vXCV47YL5WoI2X6": "Enpoint with IP $activity.definition_activity_01H8NT3FHO2CA5tB4NZ0EZGRfqPKG73dd9o.output.matching_strings[0]$ and GUI $activity.definition_activity_01H8NT3PA1HMD31ouiW3ddcQ0aQBtuOqv1g.output.variable_workflow_01H8NT15ID6NY3XF5cdeMsBmKxN29WzGqCo$ has been isolated",
+            "variable_workflow_01FGYZ9BV4QTP19CuMwcW8QywvCP9ymx2BZ": ""
           },
           "runtime_user": {
             "target_default": true
@@ -320,10 +320,10 @@
           "skip_execution": false,
           "target": {
             "override_workflow_target": true,
-            "target_id": "01EBBH5VEL3BW52QyyV9XtpzwZrqwV0tWjp",
-            "target_type": "01DP17RZO1NPY2nU90yoRhgJck3MEdxTGM2"
+            "target_id": "definition_target_01FWYLOO0J2XM7SH55NFSKhqCgLoFpGLcPt",
+            "target_type": "web-service.endpoint"
           },
-          "workflow_id": "definition_workflow_01F9A4GF8ESOT7SkYymvW8FyEOzp5VC6Yaj"
+          "workflow_id": "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf"
         },
         "object_type": "definition_activity"
       }
@@ -333,6 +333,23 @@
     ]
   },
   "targets": {
+    "definition_target_01FWYLOO0J2XM7SH55NFSKhqCgLoFpGLcPt": {
+      "unique_name": "definition_target_01FWYLOO0J2XM7SH55NFSKhqCgLoFpGLcPt",
+      "name": "Webex Teams",
+      "title": "Webex Teams",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "Webex Teams",
+        "host": "webexapis.com",
+        "ignore_proxy": false,
+        "no_runtime_user": true,
+        "port": 443,
+        "protocol": "https"
+      }
+    },
     "definition_target_01GMBCSIX93D907IIbHhoY7BTGFLp0gBZH3": {
       "unique_name": "definition_target_01GMBCSIX93D907IIbHhoY7BTGFLp0gBZH3",
       "name": "swc_email",
@@ -398,8 +415,8 @@
     }
   },
   "variables": {
-    "variable_01GSE0GGBJ8KS78dUoPBQTekUsdhWNcXDY4": {
-      "unique_name": "variable_01GSE0GGBJ8KS78dUoPBQTekUsdhWNcXDY4",
+    "variable_01H8O34O0PAJ47blMMxbt2SNGMp4PTPYlnD": {
+      "unique_name": "variable_01H8O34O0PAJ47blMMxbt2SNGMp4PTPYlnD",
       "properties": {
         "value": "*****",
         "scope": "global",
@@ -413,24 +430,12 @@
   "subworkflows": [
     {
       "workflow": {
-        "unique_name": "definition_workflow_01GQHY7FLLNN2329kLIh1fFilgc65Hkb2I1",
-        "name": "HJ_AMP_Get_Guid for IP",
-        "title": "HJ_AMP_Get_Guid for IP",
+        "unique_name": "definition_workflow_01H8NT15UAKOJ5HJ1zg2mm2T2p6lhpCr0xT",
+        "name": "Copy-HJ_AMP_Get_Guid for IP",
+        "title": "Copy-HJ_AMP_Get_Guid for IP",
         "type": "generic.workflow",
         "base_type": "workflow",
         "variables": [
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "",
-              "scope": "output",
-              "name": "GUID_ID",
-              "type": "datatype.string",
-              "is_required": false
-            },
-            "unique_name": "variable_workflow_01GQHY7DG8CKK6nFw9n3fFG1vGk3RpphiZd",
-            "object_type": "variable_workflow"
-          },
           {
             "schema_id": "datatype.string",
             "properties": {
@@ -440,7 +445,19 @@
               "type": "datatype.string",
               "is_required": true
             },
-            "unique_name": "variable_workflow_01GQHY7DG88MX1P8gGz4NAYMYw7RmY82OFP",
+            "unique_name": "variable_workflow_01H8NT15ID1O47VxPSnsUfJgJvJmI3P1tMq",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "output",
+              "name": "GUID_ID",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_01H8NT15ID6NY3XF5cdeMsBmKxN29WzGqCo",
             "object_type": "variable_workflow"
           }
         ],
@@ -449,7 +466,7 @@
             "is_atomic": false
           },
           "delete_workflow_instance": false,
-          "display_name": "HJ_AMP_Get_Guid for IP",
+          "display_name": "Copy-HJ_AMP_Get_Guid for IP",
           "runtime_user": {
             "runtime_user_id": "definition_runtime_user_01GQHQZ6QO5C47ZEric3sO0Og4ek4KETvq9",
             "override_target_runtime_user": true,
@@ -464,7 +481,7 @@
         "object_type": "definition_workflow",
         "actions": [
           {
-            "unique_name": "definition_activity_01GQHYA6PJSDP3FPQyKTnVk4HwxCC5Lzgrx",
+            "unique_name": "definition_activity_01H8NT1TTU9KW367c1HNpYozJbamYv1G3eU",
             "name": "HTTP Request",
             "title": "HTTP Request",
             "type": "web-service.http_request",
@@ -489,7 +506,7 @@
             "object_type": "definition_activity"
           },
           {
-            "unique_name": "definition_activity_01GQHYB6GOIRJ2eApuw5tmXPXN0ypErAfrQ",
+            "unique_name": "definition_activity_01H8NT20QW2WC4WcNlYbywVV6Ik3V8s0HEp",
             "name": "JSONPath Query",
             "title": "JSONPath Query",
             "type": "corejava.jsonpathquery",
@@ -498,7 +515,7 @@
               "action_timeout": 180,
               "continue_on_failure": false,
               "display_name": "JSONPath Query",
-              "input_json": "$activity.definition_activity_01GQHYA6PJSDP3FPQyKTnVk4HwxCC5Lzgrx.output.response_body$",
+              "input_json": "$activity.definition_activity_01H8NT1TTU9KW367c1HNpYozJbamYv1G3eU.output.response_body$",
               "jsonpath_queries": [
                 {
                   "jsonpath_query": "['data']",
@@ -511,7 +528,7 @@
             "object_type": "definition_activity"
           },
           {
-            "unique_name": "definition_activity_01GQHYC3R6OWS3ygQD9taCDAsU5Wv8MactC",
+            "unique_name": "definition_activity_01H8NT28VE32L4xxqASUxEDiCXkemKti2T4",
             "name": "Execute Python Script",
             "title": "Execute Python Script",
             "type": "python3.script",
@@ -520,9 +537,9 @@
               "action_timeout": 180,
               "continue_on_failure": false,
               "display_name": "Execute Python Script",
-              "script": "true = ''\nfalse = ''\nresponsecomputers = $activity.definition_activity_01GQHYA6PJSDP3FPQyKTnVk4HwxCC5Lzgrx.output.response_body$['data']\nconnector_guid = ''\n\nfor computer in responsecomputers:\n     for ip in computer['internal_ips']:\n            if ip == '$workflow.definition_workflow_01GQHY7FLLNN2329kLIh1fFilgc65Hkb2I1.input.variable_workflow_01GQHY7DG88MX1P8gGz4NAYMYw7RmY82OFP$':\n              connector_guid = computer['connector_guid']\n              break",
+              "script": "true = ''\nfalse = ''\nresponsecomputers = $activity.definition_activity_01H8NT1TTU9KW367c1HNpYozJbamYv1G3eU.output.response_body$['data']\nconnector_guid = ''\n\nfor computer in responsecomputers:\n     for ip in computer['internal_ips']:\n            if ip == '$workflow.definition_workflow_01H8NT15UAKOJ5HJ1zg2mm2T2p6lhpCr0xT.input.variable_workflow_01H8NT15ID1O47VxPSnsUfJgJvJmI3P1tMq$':\n              connector_guid = computer['connector_guid']\n              break",
               "script_arguments": [
-                "$activity.definition_activity_01GQHYA6PJSDP3FPQyKTnVk4HwxCC5Lzgrx.output.response_body$"
+                "$activity.definition_activity_01H8NT1TTU9KW367c1HNpYozJbamYv1G3eU.output.response_body$"
               ],
               "script_queries": [
                 {
@@ -536,7 +553,7 @@
             "object_type": "definition_activity"
           },
           {
-            "unique_name": "definition_activity_01GQHYCVS2J040TmJATWOBEoaZK7Ih6jbUp",
+            "unique_name": "definition_activity_01H8NT2GSY0OI393OeH28MfMPbgVHmXGngV",
             "name": "Set Variables",
             "title": "Set Variables",
             "type": "core.set_multiple_variables",
@@ -547,8 +564,8 @@
               "skip_execution": false,
               "variables_to_update": [
                 {
-                  "variable_to_update": "$workflow.definition_workflow_01GQHY7FLLNN2329kLIh1fFilgc65Hkb2I1.output.variable_workflow_01GQHY7DG8CKK6nFw9n3fFG1vGk3RpphiZd$",
-                  "variable_value_new": "$activity.definition_activity_01GQHYC3R6OWS3ygQD9taCDAsU5Wv8MactC.output.script_queries.connector_guid$"
+                  "variable_to_update": "$workflow.definition_workflow_01H8NT15UAKOJ5HJ1zg2mm2T2p6lhpCr0xT.output.variable_workflow_01H8NT15ID6NY3XF5cdeMsBmKxN29WzGqCo$",
+                  "variable_value_new": "$activity.definition_activity_01H8NT28VE32L4xxqASUxEDiCXkemKti2T4.output.script_queries.connector_guid$"
                 }
               ]
             },
@@ -562,6 +579,6 @@
     }
   ],
   "atomic_workflows": [
-    "definition_workflow_01F9A4GF8ESOT7SkYymvW8FyEOzp5VC6Yaj"
+    "definition_workflow_01FGYY44YU521254ygN3Le0In0kEHpiPNpf"
   ]
 }
