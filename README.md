@@ -73,13 +73,21 @@ Configure Stealthwatch Cloud to send you an email every time an alert is trigger
 
 
 ## Action Orchestration configuration
-- Log into Action Orchestration 
-- Click on workflow tab
+- Log into SecureX Action Orchestration 
+- Click on Orchestration tab
 - Click on import
+
+
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/ssecureX1.png) 
+
 - Import from: "browse"
 - Paste JSON file content into text box
 - Check "import as a new workflow (clone)
 - Click on import
+
+
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/secureX2.png) 
+
 - Now the workflow is imported. You can click on it and will be able to modify it:
 
 
