@@ -73,7 +73,7 @@ Configure Stealthwatch Cloud to send you an email every time an alert is trigger
 
 
 ## Action Orchestration configuration
-- Log into SecureX Action Orchestration 
+- Log into SecureX  
 - Click on Orchestration tab
 - Click on import
 
@@ -81,27 +81,28 @@ Configure Stealthwatch Cloud to send you an email every time an alert is trigger
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/secureX_1.png) 
 
 - Import from: "browse"
-- Paste JSON file content into text box
+- Paste JSON file content into text box or browse for the JSON file locally in your PC
 - Check "import as a new workflow (clone)
 - Click on import
 
 
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/secureX_2.png) 
 
-- Now the workflow is imported. You can click on it and will be able to modify it:
+- You will see a message to update the credentials for email address, AMP and webex teams.
 
 
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/workflow2.png) 
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/update.PNG) 
 
 
-- On the right pannel, you will be able to add the target and account keys of your AMP4E endpoints.
+- "Stealthwatch Cloud email" will need to get the target id modified to match your email credentials
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/email.png) 
+
+
+- You will need to add the target and account keys of your AMP4E endpoints.
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/amp.png) 
 
 
-- Click now on "Stealthwatch Cloud email", and modify the target id to match your email credentials
-![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/email.png) 
-
-- Click on "Webex Teams Post a Message about isolation" and include:
+- Lastly, "Webex Teams Post a Message about isolation" will need to get the Webex Teams bot and Webex Teams Room modified:
 
 
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/webex_teams_config.png) 
@@ -115,5 +116,11 @@ Configure Stealthwatch Cloud to send you an email every time an alert is trigger
 
 
 ![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/id2.png)
+
+
+- Now the workflow is imported. You can click on it and will be able to modify it:
+
+
+![alt text](https://github.com/aligarci/swc_amp_securex_orchestration/blob/master/workflow2.png) 
 
 
